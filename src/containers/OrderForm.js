@@ -14,18 +14,23 @@ class OrderForm extends Component {
             address = findDOMNode(this.refs.address),
             comment = findDOMNode(this.refs.comment);
         const {submitOrder} = this.props.orderActions;
-        submitOrder({
-            name: name.value,
-            email: email.value,
-            phone: phone.value,
-            address: address.value,
-            comment: comment.value,
-        });
-        name.value = '';
-        email.value = '';
-        phone.value = '';
-        address.value = '';
-        comment.value = '';
+        if (!name.value || !email.value || !phone.value || !address.value || !comment.value){
+            alert('Заполнены не все поля');
+        } else {
+            submitOrder({
+                name: name.value,
+                email: email.value,
+                phone: phone.value,
+                address: address.value,
+                comment: comment.value,
+            });
+            name.value = '';
+            email.value = '';
+            phone.value = '';
+            address.value = '';
+            comment.value = '';
+        }
+
 
     }
 
@@ -37,29 +42,34 @@ class OrderForm extends Component {
                    defaultValue=''
                    placeholder='Ваше имя'
                    ref='name'
+                   required
             />
             <input className="order-form__input"
                    type='email'
                    defaultValue=''
                    placeholder='Email'
                    ref='email'
+                   required
             />
             <input className="order-form__input"
                    type='text'
                    defaultValue=''
                    placeholder='Телефон'
                    ref='phone'
+                   required
             />
             <input className="order-form__input"
                    type='text'
                    defaultValue=''
                    placeholder='Адрес доставки'
                    ref='address'
+                   required
             />
             <textarea
                 className='order-form__textarea'
                 placeholder='Комментарий'
                 ref='comment'
+                required
             ></textarea>
             <button className='button button_blue'>Оформить заказ</button>
         </form>

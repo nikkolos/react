@@ -14,8 +14,9 @@ function getProducts() {
     return (dispatch) => {
         dispatch({
             type: GET_PRODUCT_REQUEST,
-        })
-
+        });
+        // запрос к серверу
+        // имитация ожидания ответа
         setTimeout(() => {
             var rand = +(new Date);
             dispatch({
